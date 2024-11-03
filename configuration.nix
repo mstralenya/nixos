@@ -172,7 +172,12 @@
       telegram-desktop
       discord
       #audio
-      deadbeef-with-plugins
+      (deadbeef-with-plugins.override {
+        plugins = with deadbeefPlugins; [
+          lyricbar
+          mpris2
+        ];
+      })
       spotify
       playerctl
       spicetify-cli
