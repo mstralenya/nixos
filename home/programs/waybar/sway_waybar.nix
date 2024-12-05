@@ -160,17 +160,35 @@ in
       ];
       modules-center = [
         "clock"
+        "custom/weather"
       ];
       modules-right = [
+        "custom/media"
         "pulseaudio"
-        "backlight"
         "memory"
         "cpu"
         "network"
-        "battery"
         "custom/powermenu"
         "tray"
       ];
+      "custom/media" = {
+        format = "{icon}{}";
+        return-type = "json";
+        format-icons = {
+          Playing = " ";
+          Paused = " ";
+        };
+        max-length = 70;
+        exec = "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+        on-click = "playerctl play-pause";
+      };
+      "custom/weather" = {
+        exec = "wttrbar --location Warsaw --custom-indicator \"{ICON} {temp_C} °C\"";
+        format = "{}";
+        tooltip = true;
+        interval = 3600;
+        return-type = "json";
+      };
       "custom/launcher" = {
         "format" = " ";
         "on-click" = "~/.config/rofi/launcher.sh";
@@ -201,13 +219,6 @@ in
         "exec" = "sleep 1s && ${sharedScripts.cava-internal}/bin/cava-internal";
         "tooltip" = false;
       };
-      "backlight" = {
-        "device" = "intel_backlight";
-        "on-scroll-up" = "light -A 5";
-        "on-scroll-down" = "light -U 5";
-        "format" = "{icon} {percent}%";
-        "format-icons" = [ "󰃝" "󰃞" "󰃟" "󰃠" ];
-      };
       "pulseaudio" = {
         "scroll-step" = 1;
         "format" = "{icon} {volume}%";
@@ -216,18 +227,6 @@ in
           "default" = [ "" "" "" ];
         };
         "on-click" = "pamixer -t";
-        "tooltip" = false;
-      };
-      "battery" = {
-        "interval" = 10;
-        "states" = {
-          "warning" = 20;
-          "critical" = 10;
-        };
-        "format" = "{icon} {capacity}%";
-        "format-icons" = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
-        "format-full" = "{icon} {capacity}%";
-        "format-charging" = "󰂄 {capacity}%";
         "tooltip" = false;
       };
       "clock" = {

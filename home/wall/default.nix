@@ -2,8 +2,8 @@
 let
   wallpapers = {
     nord = {
-      url = "https://raw.githubusercontent.com/Ruixi-rebirth/someSource/main/wall/nord.png";
-      sha256 = "sha256-ZkuTlFDRPALR//8sbRAqiiAGApyqpKMA2zElRa2ABhY=";
+      url = "https://github.com/mstralenya/nixos/blob/master/wallpaper.png?raw=true";
+      sha256 = "7a80f8a87c79c7090099fbe7a2dedfbf1ad2b134c8212fb90989a6d0395b9d9a";
     };
   };
   default_wall = wallpapers.nord or (throw "Unknown theme");

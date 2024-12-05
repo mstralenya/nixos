@@ -1,6 +1,8 @@
 { inputs, withSystem, module_args, ... }:
 let
   user = "m";
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
 
   sharedModules = [
     (import ../. { inherit user; })
@@ -8,11 +10,11 @@ let
     inputs.nix-index-database.hmModules.nix-index
     inputs.nur.hmModules.nur
     inputs.nix-doom-emacs.hmModule
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
   homeImports = {
     "${user}@k-on" = [ ./k-on ] ++ sharedModules;
-    "${user}@yu" = [ ./yu ] ++ sharedModules;
   };
 
   inherit (inputs.home-manager.lib) homeManagerConfiguration;

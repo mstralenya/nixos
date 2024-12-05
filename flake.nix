@@ -113,15 +113,7 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin-base16 = {
-      url = "github:catppuccin/base16";
-      flake = false;
-    };
-    catppuccin-nix = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.stylix.follows = "nixpkgs";
-    };
+    catppuccin.url = "github:catppuccin/nix";
 
     ### EMACS, DOOM EMACS
     doom-emacs.url = "github:doomemacs/doomemacs/master";

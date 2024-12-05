@@ -115,23 +115,7 @@
         "type": "github"
       }
     },
-    "catppuccin-base16": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712772035,
-        "narHash": "sha256-HHodDRrlcBVWGE3MN0i6UvUn30zY/JFEbgeUpnZG5C0=",
-        "owner": "catppuccin",
-        "repo": "base16",
-        "rev": "99aa911b29c9c7972f7e1d868b6242507efd508c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "base16",
-        "type": "github"
-      }
-    },
-    "catppuccin-nix": {
+    "catppuccin": {
       "locked": {
         "lastModified": 1733001911,
         "narHash": "sha256-uX/9m0TbdhEzuWA0muM5mI/AaWcLiDLjCCyu5Qr9MRk=",
@@ -2694,8 +2678,7 @@
     },
     "root": {
       "inputs": {
-        "catppuccin-base16": "catppuccin-base16",
-        "catppuccin-nix": "catppuccin-nix",
+        "catppuccin": "catppuccin",
         "disko": "disko",
         "doom-emacs": "doom-emacs",
         "emacs-overlay": "emacs-overlay",

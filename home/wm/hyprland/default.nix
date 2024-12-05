@@ -73,6 +73,7 @@
     hyprshot
     hyprpaper
     waybar
+    wttrbar
     waybar-mpris
   ]);
 
