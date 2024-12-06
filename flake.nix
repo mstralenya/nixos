@@ -114,21 +114,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
-
-    ### EMACS, DOOM EMACS
-    doom-emacs.url = "github:doomemacs/doomemacs/master";
-    doom-emacs.flake = false;
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    nix-doom-emacs = {
-      #url = "github:nix-community/nix-doom-emacs/master";
-      url = "github:thiagokokada/nix-doom-emacs/bump-doom-emacs";
-      inputs.doom-emacs.follows = "doom-emacs";
-      inputs.emacs-overlay.follows = "emacs-overlay";
-      inputs.flake-utils.follows = "flake-utils";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -136,13 +123,11 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://ruixi-rebirth.cachix.org"
       "https://cache.nixos.org"
       "https://nixpkgs-wayland.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "ruixi-rebirth.cachix.org-1:sWs3V+BlPi67MpNmP8K4zlA3jhPCAvsnLKi4uXsiLI4="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     ];

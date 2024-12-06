@@ -79,7 +79,7 @@ in
 
               * {
               font-family: JetBrainsMono Nerd Font Mono !important;
-              font-size: 12pt !important;
+              font-size: 16pt !important;
               }
 
               /* #nav-bar { visibility: collapse !important; } */
@@ -88,13 +88,6 @@ in
                   visibility: collapse;
                 }
 
-                /* hide navigation bar when it is not focused; use Ctrl+L to get focus */
-                #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) {
-                  margin-top: -45px;
-                }
-                #navigator-toolbox {
-                  transition: 0.2s margin-top ease-out;
-                }
       '';
       userContent = ''
                 /*hide all scroll bars*/

@@ -4,11 +4,11 @@
     btop = {
       enable = true;
       settings = {
-        color_theme = "nord";
+        color_theme = "catppuccin-frappe";
       };
     };
   };
   home.file = {
-    ".config/btop/themes/nord.theme".source = ./theme.nix;
+    ".config/btop/themes/catppuccin-frappe.theme".source = ./theme.nix;
   };
 }

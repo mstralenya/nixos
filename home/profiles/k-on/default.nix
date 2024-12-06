@@ -5,7 +5,7 @@
     ../../shell
     ../../dev
     ../../editors/neovim
-    #../../editors/emacs
+    ../../editors/emacs
     ../../terminals
     ../../programs
   ] ++ [

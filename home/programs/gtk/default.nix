@@ -2,7 +2,7 @@
 
 {
   home.sessionVariables = {
-    GTK_THEME = "Nordic";
+    GTK_THEME = "Catppuccin";
     QT_QPA_PLATFORMTHEME = "gtk3";
   };
   home.pointerCursor = {
@@ -15,7 +15,7 @@
     enable = true;
     theme = {
       name = "Nordic";
-      package = pkgs.nordic;
+      package = pkgs.catppuccin-gtk;
     };
     cursorTheme = {
       name = "Catppuccin-Frappe-Dark";

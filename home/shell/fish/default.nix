@@ -29,7 +29,7 @@
     };
   };
   home.file = {
-    ".config/fish/conf.d/nord.fish".text = import ./nord_theme.nix;
+    ".config/fish/conf.d/catppuccin.fish".text = import ./catppuccin.nix;
     ".config/fish/functions/fish_prompt.fish".source = ./functions/fish_prompt.fish;
     ".config/fish/functions/xdg-get.fish".text = import ./functions/xdg-get.nix;
     ".config/fish/functions/xdg-set.fish".text = import ./functions/xdg-set.nix;

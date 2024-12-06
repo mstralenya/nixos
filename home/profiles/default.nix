@@ -9,8 +9,8 @@ let
     module_args
     inputs.nix-index-database.hmModules.nix-index
     inputs.nur.hmModules.nur
-    inputs.nix-doom-emacs.hmModule
     inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.spicetify-nix.homeManagerModules.default
   ];
 
   homeImports = {

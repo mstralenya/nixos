@@ -13,7 +13,7 @@ in
     style = ''
       * {
       font-family: "JetBrainsMono Nerd Font";
-      font-size: 12pt;
+      font-size: 16pt;
       font-weight: bold;
       border-radius: 0px;
       transition-property: background-color;
@@ -97,6 +97,12 @@ in
       #custom-wall {
       color: #B38DAC;
       }
+      #custom-weather {
+      color: #E4E8EF;
+      }
+      #custom-media {
+      color: #E4E8EF;
+      }
       #temperature {
       color: #80A0C0;
       }
@@ -179,7 +185,7 @@ in
           Paused = " ";
         };
         max-length = 70;
-        exec = "playerctl -a metadata --format '{\"text\": \"{{playerName}}: {{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+        exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(album)}}: {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
         on-click = "playerctl play-pause";
       };
       "custom/weather" = {
@@ -279,8 +285,8 @@ in
         "tooltip" = false;
       };
       "tray" = {
-        "icon-size" = 15;
-        "spacing" = 5;
+        "icon-size" = 18;
+        "spacing" = 8;
       };
     }];
   };
