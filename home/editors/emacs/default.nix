@@ -1,16 +1,16 @@
 { pkgs, lib, inputs, home, ... }:
 {
-  home.file."./.config/doom.d/" = {
+  home.file."./.config/doom/" = {
     source = ./doom.d;
     recursive = true;
   };
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs29-pgtk;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
+    package = pkgs.emacs30-pgtk;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
   };
   services.emacs = {
       enable = true;
-      package = pkgs.emacs29-pgtk;
+      package = pkgs.emacs30-pgtk;
   };
   home.packages = with pkgs; [
       binutils

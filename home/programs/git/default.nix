@@ -17,13 +17,13 @@
       };
     };
   };
-  services.git-sync = {
-    enable = true;
-    repositories = {
-      doom-emacs = {
-        uri = "https://github.com/doomemacs/doomemacs";
-        path = "/home/${user}/.config/emacs";
-      };
-    };
-  };
+  #services.git-sync = {
+  #  enable = true;
+  #  repositories = {
+  #    doom-emacs = {
+  #      uri = "https://github.com/doomemacs/doomemacs";
+  #      path = "/home/${user}/.config/emacs";
+  #    };
+  #  };
+  #};
 }

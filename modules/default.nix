@@ -24,6 +24,7 @@ in
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.impermanence.nixosModules.impermanence
           inputs.disko.nixosModules.disko
+          inputs.aagl.nixosModules.default
           module_args
           ./core.nix
           ./nix.nix

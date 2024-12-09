@@ -49,7 +49,6 @@
       clang
       gdb
       neovim
-      emacs-nox
       wget
       neofetch
       eza
