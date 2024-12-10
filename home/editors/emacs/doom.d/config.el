@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 (setq user-full-name "Mikhail Stralenia"
       user-mail-address "mstralenya@gmail.com"
-      doom-theme 'doom-tokyo-night
+      doom-theme 'catppuccin
       doom-font (font-spec :family "JetBrains Mono NerdFont" :size 18)
       doom-big-font (font-spec :family "JetBrains Mono NerdFont" :size 22))
 (setq display-line-numbers-type 'relative)
@@ -9,6 +9,7 @@
 
 ;; Place your private configuration here
 (setq deft-directory "~/notes")
+(setq catppuccin-flavor 'frappe)
 
 (after! minimap-mode
   (pushnew! minimap-major-modes 'prog-mode))
