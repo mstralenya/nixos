@@ -1,4 +1,9 @@
-{ pkgs, user, config, lib, ... }:
+{ pkgs
+, user
+, config
+, lib
+, ...
+}:
 {
   programs.git.enable = true;
 
@@ -9,8 +14,8 @@
       dns = "systemd-resolved";
     };
     firewall.allowedTCPPorts = [
-      22 #sshd
-      6600 #mpd
+      22 # sshd
+      6600 # mpd
     ];
     hosts = {
       "185.199.109.133" = [ "raw.githubusercontent.com" ];
@@ -80,7 +85,11 @@
     shell = lib.mkIf (config.networking.hostName != "minimal") pkgs.fish or pkgs.bash;
     uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" ];
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+    ];
   };
 
   security = {

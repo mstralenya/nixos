@@ -8,9 +8,7 @@
     ../../editors/emacs
     ../../terminals
     ../../programs
-  ] ++ [
-    ../../wm/hyprland
-  ];
+  ] ++ [ ../../wm/hyprland ];
 
   # Autostart QEMU/KVM in the first initialization of NixOS
   # realted link: https://nixos.wiki/wiki/Virt-manager

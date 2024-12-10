@@ -152,142 +152,150 @@ in
       font-family: "Hack Nerd Font" ;
       }
     '';
-    settings = [{
-      mode = "dock";
-      start_hidden = false;
-      modules-left = [
-        "custom/launcher"
-        "hyprland/workspaces"
-        "temperature"
-        "custom/wall"
-        "mpd"
-        "custom/cava-internal"
-        "custom/recgif"
-      ];
-      modules-center = [
-        "clock"
-        "custom/weather"
-      ];
-      modules-right = [
-        "custom/media"
-        "pulseaudio"
-        "memory"
-        "cpu"
-        "network"
-        "custom/powermenu"
-        "tray"
-      ];
-      "custom/media" = {
-        format = "{icon}{}";
-        return-type = "json";
-        format-icons = {
-          Playing = " ";
-          Paused = " ";
+    settings = [
+      {
+        mode = "dock";
+        start_hidden = false;
+        modules-left = [
+          "custom/launcher"
+          "hyprland/workspaces"
+          "temperature"
+          "custom/wall"
+          "mpd"
+          "custom/cava-internal"
+          "custom/recgif"
+        ];
+        modules-center = [
+          "clock"
+          "custom/weather"
+        ];
+        modules-right = [
+          "custom/media"
+          "pulseaudio"
+          "memory"
+          "cpu"
+          "network"
+          "custom/powermenu"
+          "tray"
+        ];
+        "custom/media" = {
+          format = "{icon}{}";
+          return-type = "json";
+          format-icons = {
+            Playing = " ";
+            Paused = " ";
+          };
+          max-length = 70;
+          exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(album)}}: {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
+          on-click = "playerctl play-pause";
         };
-        max-length = 70;
-        exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(album)}}: {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-        on-click = "playerctl play-pause";
-      };
-      "custom/weather" = {
-        exec = "wttrbar --location Warsaw --custom-indicator \"{ICON} {temp_C} °C\"";
-        format = "{}";
-        tooltip = true;
-        interval = 3600;
-        return-type = "json";
-      };
-      "custom/launcher" = {
-        "format" = " ";
-        "on-click" = "~/.config/rofi/launcher.sh";
-        "tooltip" = false;
-      };
-      "custom/recgif" = {
-        "format" = "{icon}";
-        "return-type" = "json";
-        "format-icons" = {
-          "recording" = "<span foreground='#bf616a'> </span>";
-          "stopped" = " ";
+        "custom/weather" = {
+          exec = "wttrbar --location Warsaw --custom-indicator \"{ICON} {temp_C} °C\"";
+          format = "{}";
+          tooltip = true;
+          interval = 3600;
+          return-type = "json";
         };
-        "exec" = "pgrep -x recgif >/dev/null && echo '{\"alt\": \"recording\"}' || echo '{\"alt\": \"stopped\"}'";
-        "interval" = 1;
-        "exec-if" = "sleep 0.1";
-        "on-click" = "pkill -SIGINT wf-recorder || ${sharedScripts.recgif}/bin/recgif";
-        "on-click-right" = "flameshot_watermark";
-        "tooltip" = false;
-      };
-      "custom/wall" = {
-        "on-click" = "${sharedScripts.wallpaper_random}/bin/wallpaper_random";
-        "on-click-middle" = "${sharedScripts.default_wall}/bin/default_wall";
-        "on-click-right" = "killall dynamic_wallpaper || ${sharedScripts.dynamic_wallpaper}/bin/dynamic_wallpaper &";
-        "format" = " 󰠖 ";
-        "tooltip" = false;
-      };
-      "custom/cava-internal" = {
-        "exec" = "sleep 1s && ${sharedScripts.cava-internal}/bin/cava-internal";
-        "tooltip" = false;
-      };
-      "pulseaudio" = {
-        "scroll-step" = 1;
-        "format" = "{icon} {volume}%";
-        "format-muted" = "󰖁 Muted";
-        "format-icons" = {
-          "default" = [ "" "" "" ];
+        "custom/launcher" = {
+          "format" = " ";
+          "on-click" = "~/.config/rofi/launcher.sh";
+          "tooltip" = false;
         };
-        "on-click" = "pamixer -t";
-        "tooltip" = false;
-      };
-      "clock" = {
-        "interval" = 1;
-        "format" = "{:%I:%M %p  %A %b %d}";
-        "tooltip" = true;
-        "tooltip-format" = "<tt>{calendar}</tt>";
-      };
-      "memory" = {
-        "interval" = 1;
-        "format" = "󰍛 {percentage}%";
-        "states" = {
-          "warning" = 85;
+        "custom/recgif" = {
+          "format" = "{icon}";
+          "return-type" = "json";
+          "format-icons" = {
+            "recording" = "<span foreground='#bf616a'> </span>";
+            "stopped" = " ";
+          };
+          "exec" =
+            "pgrep -x recgif >/dev/null && echo '{\"alt\": \"recording\"}' || echo '{\"alt\": \"stopped\"}'";
+          "interval" = 1;
+          "exec-if" = "sleep 0.1";
+          "on-click" = "pkill -SIGINT wf-recorder || ${sharedScripts.recgif}/bin/recgif";
+          "on-click-right" = "flameshot_watermark";
+          "tooltip" = false;
         };
-      };
-      "cpu" = {
-        "interval" = 1;
-        "format" = "󰻠 {usage}%";
-      };
-      "mpd" = {
-        "max-length" = 25;
-        "format" = "<span foreground='#bb9af7'></span> {title}";
-        "format-paused" = " {title}";
-        "format-stopped" = "<span foreground='#bb9af7'></span>";
-        "format-disconnected" = "";
-        "on-click" = "mpc --quiet toggle";
-        "on-click-right" = "mpc update; mpc ls | mpc add";
-        "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp";
-        "on-scroll-up" = "mpc --quiet prev";
-        "on-scroll-down" = "mpc --quiet next";
-        "smooth-scrolling-threshold" = 5;
-        "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
-      };
-      "network" = {
-        "interval" = 1;
-        "format-wifi" = "󰖩 {essid} ({ipaddr})";
-        "format-ethernet" = "󰀂 {ifname} ({ipaddr})";
-        "format-linked" = "󰖪 {essid} (No IP)";
-        "format-disconnected" = "󰯡 Disconnected";
-        "tooltip" = false;
-      };
-      "temperature" = {
-        #"critical-threshold"= 80;
-        "tooltip" = false;
-        "format" = " {temperatureC}°C";
-      };
-      "custom/powermenu" = {
-        "format" = "";
-        "on-click" = "~/.config/rofi/powermenu.sh";
-        "tooltip" = false;
-      };
-      "tray" = {
-        "icon-size" = 18;
-        "spacing" = 8;
-      };
-    }];
+        "custom/wall" = {
+          "on-click" = "${sharedScripts.wallpaper_random}/bin/wallpaper_random";
+          "on-click-middle" = "${sharedScripts.default_wall}/bin/default_wall";
+          "on-click-right" =
+            "killall dynamic_wallpaper || ${sharedScripts.dynamic_wallpaper}/bin/dynamic_wallpaper &";
+          "format" = " 󰠖 ";
+          "tooltip" = false;
+        };
+        "custom/cava-internal" = {
+          "exec" = "sleep 1s && ${sharedScripts.cava-internal}/bin/cava-internal";
+          "tooltip" = false;
+        };
+        "pulseaudio" = {
+          "scroll-step" = 1;
+          "format" = "{icon} {volume}%";
+          "format-muted" = "󰖁 Muted";
+          "format-icons" = {
+            "default" = [
+              ""
+              ""
+              ""
+            ];
+          };
+          "on-click" = "pamixer -t";
+          "tooltip" = false;
+        };
+        "clock" = {
+          "interval" = 1;
+          "format" = "{:%I:%M %p  %A %b %d}";
+          "tooltip" = true;
+          "tooltip-format" = "<tt>{calendar}</tt>";
+        };
+        "memory" = {
+          "interval" = 1;
+          "format" = "󰍛 {percentage}%";
+          "states" = {
+            "warning" = 85;
+          };
+        };
+        "cpu" = {
+          "interval" = 1;
+          "format" = "󰻠 {usage}%";
+        };
+        "mpd" = {
+          "max-length" = 25;
+          "format" = "<span foreground='#bb9af7'></span> {title}";
+          "format-paused" = " {title}";
+          "format-stopped" = "<span foreground='#bb9af7'></span>";
+          "format-disconnected" = "";
+          "on-click" = "mpc --quiet toggle";
+          "on-click-right" = "mpc update; mpc ls | mpc add";
+          "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp";
+          "on-scroll-up" = "mpc --quiet prev";
+          "on-scroll-down" = "mpc --quiet next";
+          "smooth-scrolling-threshold" = 5;
+          "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
+        };
+        "network" = {
+          "interval" = 1;
+          "format-wifi" = "󰖩 {essid} ({ipaddr})";
+          "format-ethernet" = "󰀂 {ifname} ({ipaddr})";
+          "format-linked" = "󰖪 {essid} (No IP)";
+          "format-disconnected" = "󰯡 Disconnected";
+          "tooltip" = false;
+        };
+        "temperature" = {
+          #"critical-threshold"= 80;
+          "tooltip" = false;
+          "format" = " {temperatureC}°C";
+        };
+        "custom/powermenu" = {
+          "format" = "";
+          "on-click" = "~/.config/rofi/powermenu.sh";
+          "tooltip" = false;
+        };
+        "tray" = {
+          "icon-size" = 18;
+          "spacing" = 8;
+        };
+      }
+    ];
   };
 }

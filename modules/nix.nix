@@ -1,11 +1,21 @@
-{ pkgs, inputs, self, lib, ... }:
+{ pkgs
+, inputs
+, self
+, lib
+, ...
+}:
 {
   nix = {
     channel.enable = false;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       nix-path = lib.mkForce "nixpkgs=flake:nixpkgs";
-      experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" "cgroups" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "auto-allocate-uids"
+        "cgroups"
+      ];
       auto-allocate-uids = true;
       use-cgroups = true;
       auto-optimise-store = true; # Optimise syslinks
@@ -21,7 +31,10 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "ruixi-rebirth.cachix.org-1:sWs3V+BlPi67MpNmP8K4zlA3jhPCAvsnLKi4uXsiLI4="
       ];
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
     gc = {
       automatic = true;

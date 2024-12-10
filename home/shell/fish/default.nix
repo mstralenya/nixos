@@ -3,11 +3,13 @@
   programs.fish = {
     enable = true;
     loginShellInit =
-      if config.wayland.windowManager.sway.enable then ''
-        set TTY1 (tty)
-        [ "$TTY1" = "/dev/tty1" ] && exec sway
-      ''
-      else '''';
+      if config.wayland.windowManager.sway.enable then
+        ''
+          set TTY1 (tty)
+          [ "$TTY1" = "/dev/tty1" ] && exec sway
+        ''
+      else
+        '''';
     interactiveShellInit = ''
       set fish_greeting ""
       set fish_key_bindings  fish_vi_key_bindings

@@ -1,28 +1,36 @@
 {
   description = "Ruixi-rebirth's NixOS Configuration";
 
-  outputs = inputs @ { self, ... }:
+  outputs =
+    inputs@{ self, ... }:
     let
       selfPkgs = import ./pkgs;
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       debug = true;
       systems = [ "x86_64-linux" ];
-      imports = [
-        ./home/profiles
-        ./hosts
-        ./modules
-      ] ++ [
-        inputs.flake-root.flakeModule
-        inputs.treefmt-nix.flakeModule
-      ];
+      imports =
+        [
+          ./home/profiles
+          ./hosts
+          ./modules
+        ]
+        ++ [
+          inputs.flake-root.flakeModule
+          inputs.treefmt-nix.flakeModule
+        ];
       flake = {
         overlays = {
           default = selfPkgs.overlay;
           emacs = inputs.emacs-overlay.overlay;
         };
       };
-      perSystem = { config, pkgs, system, ... }:
+      perSystem =
+        { config
+        , pkgs
+        , system
+        , ...
+        }:
         {
           # NOTE: These overlays apply to the Nix shell only. See `modules/nix.nix` for system overlays.
           _module.args.pkgs = import inputs.nixpkgs {
@@ -46,10 +54,13 @@
             # run by `nix devlop` or `nix-shell`(legacy)
             # Temporarily enable experimental features, run by`nix develop --extra-experimental-features nix-command --extra-experimental-features flakes`
             default = pkgs.mkShell {
-              nativeBuildInputs = with pkgs; [ git neovim sbctl just ];
-              inputsFrom = [
-                config.flake-root.devShell
+              nativeBuildInputs = with pkgs; [
+                git
+                neovim
+                sbctl
+                just
               ];
+              inputsFrom = [ config.flake-root.devShell ];
             };
           };
           # used by the `nix fmt` command
@@ -82,14 +93,13 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hypr-contrib.url = "github:hyprwm/contrib";
-    hyprland-plugins =
-      {
-        url = "github:hyprwm/hyprland-plugins";
-        inputs.hyprland.follows = "hyprland";
-      };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     impermanence.url = "github:nix-community/impermanence";
     lanzaboote = {
-      #please read this doc -> https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md 
+      #please read this doc -> https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -141,6 +151,9 @@
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI=" # aagl
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" # nix-gaming
     ];
-    trusted-users = [ "root" "@wheel" ];
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
   };
 }

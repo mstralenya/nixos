@@ -1,4 +1,8 @@
-{ config, pkgs, user, ... }:
+{ config
+, pkgs
+, user
+, ...
+}:
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -16,9 +20,9 @@
       "console=tty1"
       "nvidia-drm.fbdev=1"
     ];
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
   };
-# Bootloader.
+  # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
@@ -31,7 +35,7 @@
     gfxmodeEfi = "3840x2160";
     fontSize = 36;
     font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf";
-    extraEntriesBeforeNixOS =  true;
+    extraEntriesBeforeNixOS = true;
     default = 0;
 
     extraEntries = ''
@@ -48,10 +52,12 @@
   };
 
   zramSwap.enable = true;
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 64 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 64 * 1024;
+    }
+  ];
 
   services = {
     auto-cpufreq.enable = true;
@@ -61,9 +67,7 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-      ];
+      extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     };
     nvidia = {
       modesetting.enable = true;
@@ -75,20 +79,25 @@
     };
   };
   environment = {
-    systemPackages = (with pkgs; [
-      libva
-      libva-utils
-      glxinfo
-      egl-wayland
-    ]);
+    systemPackages = (
+      with pkgs;
+      [
+        libva
+        libva-utils
+        glxinfo
+        egl-wayland
+      ]
+    );
   };
   #mount network drive
   fileSystems."/mnt/disk" = {
     device = "//192.168.8.1/disk";
     fsType = "cifs";
     options =
-      let automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-      in [ "${automount_opts},uid=1000,gid=100" ];
+      let
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+      in
+      [ "${automount_opts},uid=1000,gid=100" ];
   };
   # Configure keymap in X11
   services.xserver.xkb = {

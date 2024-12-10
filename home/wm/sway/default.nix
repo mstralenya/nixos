@@ -7,14 +7,16 @@
     # package = inputs.nixpkgs-wayland.packages.${pkgs.system}.sway-unwrapped;
     wrapperFeatures.gtk = true;
   };
-  home.packages = [
-    inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-    inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
-  ] ++ (with pkgs;[
-    swaylock-effects
-    pamixer
-    swayidle
-  ]);
+  home.packages =
+    [
+      inputs.hypr-contrib.packages.${pkgs.system}.grimblast
+      inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
+    ]
+    ++ (with pkgs; [
+      swaylock-effects
+      pamixer
+      swayidle
+    ]);
 
   systemd.user = {
     targets.sway-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];

@@ -103,8 +103,8 @@ in
                         --in-content-page-background: #1E1E2E !important;
                     }
                 }
-        
-        
+
+
                 @-moz-document url-prefix(about:home), url-prefix(about:newtab){
 
             /* show nightly logo instead of default firefox logo in newtabpage */

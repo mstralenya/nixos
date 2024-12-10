@@ -1,15 +1,22 @@
-{ pkgs, lib, config, ... }:
+{ pkgs
+, lib
+, config
+, ...
+}:
 {
   boot = {
     bootspec.enable = true;
     loader = {
       systemd-boot =
-        if !config.boot.lanzaboote.enable then {
-          enable = true;
-          consoleMode = "auto";
-        } else {
-          enable = lib.mkForce false;
-        };
+        if !config.boot.lanzaboote.enable then
+          {
+            enable = true;
+            consoleMode = "auto";
+          }
+        else
+          {
+            enable = lib.mkForce false;
+          };
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";

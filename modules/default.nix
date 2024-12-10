@@ -34,7 +34,7 @@ in
   ];
 
   flake.nixosModules = {
-    # Plan to import custom modules for calling or exposing my own modules 
+    # Plan to import custom modules for calling or exposing my own modules
     # foo = import ./foo.nix;
   };
 }

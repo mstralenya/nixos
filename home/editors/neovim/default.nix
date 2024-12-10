@@ -1,34 +1,36 @@
 { pkgs, inputs, ... }:
 let
-  treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-    p.bash
-    p.comment
-    p.c_sharp
-    p.css
-    p.dockerfile
-    p.fish
-    p.fsharp
-    p.gitattributes
-    p.gitignore
-    p.go
-    p.gomod
-    p.gowork
-    p.hcl
-    p.javascript
-    p.jq
-    p.json5
-    p.json
-    p.lua
-    p.make
-    p.markdown
-    p.nix
-    p.python
-    p.rust
-    p.toml
-    p.typescript
-    p.vue
-    p.yaml
-  ]));
+  treesitterWithGrammars = (
+    pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+      p.bash
+      p.comment
+      p.c_sharp
+      p.css
+      p.dockerfile
+      p.fish
+      p.fsharp
+      p.gitattributes
+      p.gitignore
+      p.go
+      p.gomod
+      p.gowork
+      p.hcl
+      p.javascript
+      p.jq
+      p.json5
+      p.json
+      p.lua
+      p.make
+      p.markdown
+      p.nix
+      p.python
+      p.rust
+      p.toml
+      p.typescript
+      p.vue
+      p.yaml
+    ])
+  );
 
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
