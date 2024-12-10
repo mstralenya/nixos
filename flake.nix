@@ -1,6 +1,4 @@
 {
-  description = "Ruixi-rebirth's NixOS Configuration";
-
   outputs =
     inputs@{ self, ... }:
     let

@@ -55,7 +55,7 @@
       gdb
       neovim
       wget
-      neofetch
+      fastfetch
       eza
       p7zip
       atool
