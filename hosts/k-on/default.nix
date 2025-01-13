@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, user
-, ...
+{
+  config,
+  pkgs,
+  user,
+  ...
 }:
 {
   imports = [ ./hardware-configuration.nix ];
@@ -23,27 +24,31 @@
     supportedFilesystems = [ "ntfs" ];
   };
   # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.loader.timeout = 12;
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    useOSProber = false;
-    efiSupport = true;
-    gfxmodeEfi = "3840x2160";
-    fontSize = 36;
-    font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf";
-    extraEntriesBeforeNixOS = true;
-    default = 0;
+  boot.loader = {
+    systemd-boot.enable = false;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    timeout = 12;
+    grub = {
+      enable = true;
+      device = "nodev";
+      useOSProber = false;
+      efiSupport = true;
+      gfxmodeEfi = "1920x1080";
+      fontSize = 18;
+      font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf";
+      extraEntriesBeforeNixOS = true;
+      default = 0;
 
-    extraEntries = ''
-      menuentry "Windows Boot Manager" {
-        search --file --no-floppy --set=root /efi/Microsoft/Boot/bootmgfw.efi
-        chainloader /efi/Microsoft/Boot/bootmgfw.efi
-      }
-    '';
+      extraEntries = ''
+        menuentry "Windows Boot Manager" {
+          search --file --no-floppy --set=root /efi/Microsoft/Boot/bootmgfw.efi
+          chainloader /efi/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
+    };
   };
 
   nix.gc = {
@@ -106,7 +111,7 @@
     options = "grp:win_space_toggle";
   };
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -115,15 +120,13 @@
     pulse.enable = true;
   };
 
-  services.greetd = {
+  services.displayManager.sddm = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-        user = "greeter";
-      };
-    };
+    wayland.enable = true;
+    theme = "catppuccin-mocha";
+    package = pkgs.kdePackages.sddm;
   };
+
   environment.variables = {
     # WLR_RENDERER = "vulkan";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";

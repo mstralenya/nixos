@@ -1,8 +1,9 @@
-{ inputs
-, sharedModules
-, homeImports
-, user
-, ...
+{
+  inputs,
+  sharedModules,
+  homeImports,
+  user,
+  ...
 }:
 {
   flake.nixosConfigurations =
@@ -18,7 +19,6 @@
           ../modules/impermanence.nix
           ../modules/desktop.nix
           ../modules/fonts.nix
-          ../modules/virtualisation
           ../modules/game.nix
           ../modules/_1password.nix
           {

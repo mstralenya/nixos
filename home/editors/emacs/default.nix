@@ -1,8 +1,9 @@
-{ pkgs
-, lib
-, inputs
-, home
-, ...
+{
+  pkgs,
+  lib,
+  inputs,
+  home,
+  ...
 }:
 {
   home.file."./.config/doom/" = {
@@ -36,4 +37,7 @@
     sqlite
     age
   ];
+  home.sessionVariables = {
+    EDITOR = "emacs -nw";
+  };
 }

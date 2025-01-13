@@ -22,7 +22,7 @@
       pamixer
       (deadbeef-with-plugins.override {
         plugins = with deadbeefPlugins; [
-          lyricbar
+          #lyricbar
           mpris2
         ];
       })

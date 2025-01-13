@@ -1,8 +1,9 @@
-{ pkgs
-, user
-, config
-, lib
-, ...
+{
+  pkgs,
+  user,
+  config,
+  lib,
+  ...
 }:
 {
   programs.git.enable = true;
@@ -48,7 +49,7 @@
 
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
-    shells = with pkgs; [ fish ];
+    shells = with pkgs; [ zsh ];
     systemPackages = with pkgs; [
       gcc
       clang
@@ -79,10 +80,10 @@
   users.users.root = {
     initialHashedPassword = "$6$lxmdznvXPgvRA.uq$R7Up1Eo1lrhaAbAGizrj/0dsbcU9DGKKVKLsA3bCrGYWkw/NkaQT.s41xTSqFkBZDXbucV00T2nN652D36AyG0";
   };
-  programs.fish.enable = lib.mkIf (config.networking.hostName != "minimal") true;
+  programs.zsh.enable = lib.mkIf (config.networking.hostName != "minimal") true;
   users.users.${user} = {
     initialHashedPassword = "$y$j9T$vS7YYYLF/Sv4xY429xmQn/$DCkBAo8.JwI4sFytsxW2jG1VVgGHSvIwn.F4W2I/el5";
-    shell = lib.mkIf (config.networking.hostName != "minimal") pkgs.fish or pkgs.bash;
+    shell = lib.mkIf (config.networking.hostName != "minimal") pkgs.zsh or pkgs.bash;
     uid = 1000;
     isNormalUser = true;
     extraGroups = [

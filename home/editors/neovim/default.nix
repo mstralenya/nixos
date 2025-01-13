@@ -7,7 +7,6 @@ let
       p.c_sharp
       p.css
       p.dockerfile
-      p.fish
       p.fsharp
       p.gitattributes
       p.gitignore

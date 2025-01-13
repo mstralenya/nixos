@@ -1,5 +1,8 @@
 {
   programs = {
+    ghostty = {
+        enable = true;
+    };
     kitty = {
       enable = true;
       environment = { };

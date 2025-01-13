@@ -24,6 +24,7 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -34,7 +35,6 @@
       wlr-randr
       wf-recorder
       wlprop
-      xorg.xeyes
       nemo
       wev
       pulsemixer
@@ -42,9 +42,16 @@
       imagemagick
       grim
       slurp
-      linux-wifi-hotspot
-      scrcpy
       qbittorrent
+      sddm-astronaut
+      where-is-my-sddm-theme
+      (pkgs.catppuccin-sddm.override {
+        flavor = "mocha";
+        #font = "Noto Sans";
+        fontSize = "18";
+        #background = "${./wallpaper.png}";
+        loginBackground = true;
+      })
     ];
     variables.NIXOS_OZONE_WL = "1";
   };
@@ -56,6 +63,7 @@
 
   programs = {
     light.enable = true;
+    hyprland.enable = true;
   };
   services = {
     dbus.packages = [ pkgs.gcr ];
