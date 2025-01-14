@@ -100,6 +100,9 @@
             dotnet_9.aspnetcore
           ]
         )
+        fsautocomplete
+        fantomas
+        fable
       ]
     );
   };
