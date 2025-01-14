@@ -8,14 +8,13 @@
       vim = "nvim";
       vi = "nvim";
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config/";
-      clean-garbage = "nix-collect-garbage -d && sudo nixo-collect-garbage -d";
+      clean-garbage = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
     };
     #histSize = 10000;
     oh-my-zsh = {
       enable = true;
       plugins = [
         "git"
-        "thefuck"
       ];
       theme = "refined";
     };

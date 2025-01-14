@@ -25,7 +25,7 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-;;       (emoji +ascii +github +unicode)
+       ;;       (emoji +ascii +github +unicode)
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        hydra
@@ -41,17 +41,17 @@
        ;;pretty-code       ; replace bits of code with pretty symbols
        tabs              ; tab bar for Emacs
        (treemacs         ; a project drawer, like neotree but cooler
-         +lsp)
+        +lsp)
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        (window-select     ; visually switch windows
-         +switch-windows +numbers)
+        +switch-windows +numbers)
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
        (evil +everywhere)
-                         ; come to the dark side, we have cookies
+                                        ; come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
@@ -64,8 +64,8 @@
 
        :emacs
        (dired            ; making dired pretty [functional]
-         +ranger         ; bringing the goodness of ranger to dired
-         +icons          ; colorful icons for dired-mode
+        +ranger         ; bringing the goodness of ranger to dired
+        +icons          ; colorful icons for dired-mode
         )
        electric          ; smarter, keyword-based electric-indent
        undo              ; persistent, smarter undo for your inevitable mistakes
@@ -73,7 +73,7 @@
        ibuffer           ; interactive buffer management
 
        :term
-       ;;eshell            ; a consistent, cross-platform shell (WIP)
+       eshell            ; a consistent, cross-platform shell (WIP)
        ;;term              ; terminals in Emacs
        ;;vterm             ; another terminals in Emacs
 
@@ -88,9 +88,9 @@
        direnv
        docker
        editorconfig        ; let someone else argue about tabs vs spaces
-;;       ein               ; tame Jupyter notebooks with emacs
+       ;;       ein               ; tame Jupyter notebooks with emacs
        (eval                ; run code, run (also, repls)
-         +overlay)
+        +overlay)
        gist                ; interacting with github gists
        (lookup             ; helps you navigate your code and documentation
         +docsets)          ; ...or in Dash docsets locally
@@ -119,14 +119,14 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       csharp             ; unity, .NET, and mono shenanigans
+       csharp              ; unity, .NET, and mono shenanigans
        data                ; config/data formats
        ;;erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
-       emacs-lisp         ; drown in parentheses
+       emacs-lisp          ; drown in parentheses
        ;;ess               ; emacs speaks statistics
-       ;;fsharp           ; ML stands for Microsoft's Language
+       (fsharp +lsp)       ; ML stands for Microsoft's Language
        (go +lsp)           ; the hipster dialect
        (haskell +lsp)      ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
@@ -146,7 +146,7 @@
         +attach          ; custom attachment system
         +brain
         +babel           ; running code in org
-;;        +jupyter
+        ;;        +jupyter
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
         +habit           ; Keep track of your habits

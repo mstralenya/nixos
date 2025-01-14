@@ -91,6 +91,15 @@
         libva-utils
         glxinfo
         egl-wayland
+        (
+          with dotnetCorePackages;
+          combinePackages [
+            dotnet_8.sdk
+            dotnet_9.sdk
+            dotnet_8.aspnetcore
+            dotnet_9.aspnetcore
+          ]
+        )
       ]
     );
   };
@@ -120,11 +129,17 @@
     pulse.enable = true;
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    theme = "catppuccin-mocha";
-    package = pkgs.kdePackages.sddm;
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "m";
+    };
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "catppuccin-mocha";
+      package = pkgs.kdePackages.sddm;
+    };
   };
 
   environment.variables = {

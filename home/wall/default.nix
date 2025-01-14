@@ -29,6 +29,18 @@ in
         Restart = "on-failure";
       };
     };
+    "1password" = {
+      Unit.Description = "1password manager GUI application.";
+      Install.WantedBy = [
+        "graphical-session.target"
+        "hyprland-session.target"
+      ];
+      Service = {
+        ExecStart = "${pkgs._1password-gui}/bin/1password} --silent";
+        Restart = "on-failure";
+        RestartSec = 2;
+      };
+    };
     default_wall = {
       Unit = {
         Description = "default wallpaper";
@@ -43,5 +55,6 @@ in
         Type = "oneshot";
       };
     };
+
   };
 }
