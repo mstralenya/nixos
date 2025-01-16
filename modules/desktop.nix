@@ -1,4 +1,9 @@
-{ pkgs, user, ... }:
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
 {
   programs = {
     dconf.enable = true;
@@ -15,6 +20,10 @@
   security.pam.services = {
     hyprland.enableGnomeKeyring = true;
   };
+
+  services.xserver.displayManager.sessionCommands = ''
+    ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+  '';
 
   security.pam.services.swaylock = { };
   xdg.portal = {
