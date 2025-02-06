@@ -18,7 +18,7 @@
       ];
       bind =
         [
-          "$mod, RETURN, exec, kitty"
+          "$mod, RETURN, exec, ghostty"
           "$mod, R, exec, rofi -show drun"
           "$mod, Q, killactive"
           "$mod SHIFT, V, fullscreen"
@@ -65,6 +65,7 @@
         );
       exec-once = [
         "waybar"
+        "gnome-keyring-daemon --daemonize"
       ];
       monitor = ",3840x2160@200,auto,1,bitdepth,10";
       input = {
@@ -72,6 +73,9 @@
         kb_options = "grp:win_space_toggle";
       };
     };
+    extraConfig = ''
+      env = XDG_CURRENT_DESKTOP,Hyprland
+    '';
   };
   home.packages =
     [

@@ -7,6 +7,7 @@
 {
   programs = {
     dconf.enable = true;
+    seahorse.enable = true;
   };
 
   programs.nm-applet = {
@@ -19,6 +20,7 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services = {
     hyprland.enableGnomeKeyring = true;
+    sddm.enableGnomeKeyring = true;
   };
 
   services.xserver.displayManager.sessionCommands = ''
@@ -88,7 +90,10 @@
   };
 
   programs.adb.enable = true;
-  users.users.${user}.extraGroups = [ "adbuser" ];
+  users.users.${user}.extraGroups = [
+    "adbuser"
+    "gamemode"
+  ];
 
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
